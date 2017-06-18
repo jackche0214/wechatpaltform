@@ -41,17 +41,16 @@ namespace weixinmenu.Controllers
         }
         public string GetMenuGridTree()
         {
-            NHibernateHelper nhlper = new NHibernateHelper();
-            ISession session = nhlper.GetSession();
+            NewNhibernateHlper nhelper = new NewNhibernateHlper();
+            ISession session = nhelper.openSession();
             List<TreeModel> result = new List<TreeModel>();
             List<TreeModel> children = new List<TreeModel>();
             IEnumerable<WeiXinMenu> kinds = session.Query<WeiXinMenu>();
-            WeiXinMenu root = kinds.FirstOrDefault(c => c.ParentId == "-1");
-            GetMenuGridTree(kinds, children, "10000");
-            result.Add(new TreeModel
-            {
+            GetMenuGridTree(kinds, children,"10000");
+            WeiXinMenu root = kinds.FirstOrDefault(c=>c.ParentId=="-1");
+            result.Add(new TreeModel {
                 Id = root.Id.ToString(),
-                MenuId = root.MenuId,
+                MenuId = root.MenuId.ToString(),
                 Text = root.MenuName,
                 Url = root.MenuUrl,
                 ParentMenuId = root.ParentId.ToString(),
@@ -66,10 +65,9 @@ namespace weixinmenu.Controllers
 
         private void GetMenuGridTree(IEnumerable<WeiXinMenu> kinds, List<TreeModel> children, string pId)
         {
-            foreach (WeiXinMenu p in kinds.Where(c => c.ParentId == pId).OrderBy(c => c.OrderBy))
+            foreach (WeiXinMenu p in kinds.Where(c=>c.ParentId == pId).OrderBy(c=>c.OrderBy))
             {
                 TreeModel gt = new TreeModel();
-                gt.Id = p.Id.ToString();
                 gt.MenuId = p.MenuId;
                 gt.Text = p.MenuName;
                 gt.Url = p.MenuUrl;
@@ -78,20 +76,9 @@ namespace weixinmenu.Controllers
                 gt.OrderBy = p.OrderBy.ToString();
                 gt.Target = p.MenuType;
                 gt.Ico = p.MenuKey;
-
-                List<TreeModel> childrenTmp = new List<TreeModel>();
-
-                GetMenuGridTree(kinds, childrenTmp, p.MenuId);
-
-                /*
-                if (childrenTmp.Count > 0)
-                {
-                    gt.state = "closed";
-                }
-                */
-
-                gt.children = childrenTmp;
-
+                List<TreeModel> childrentmp = new List<TreeModel>();
+                GetMenuGridTree(kinds, childrentmp, p.MenuId);
+                gt.children = childrentmp;
                 children.Add(gt);
             }
         }

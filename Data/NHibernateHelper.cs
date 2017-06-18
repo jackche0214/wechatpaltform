@@ -10,20 +10,19 @@ namespace Data
 {
     public class NHibernateHelper
     {
-        private ISessionFactory _sessionFactory;
+        public ISessionFactory _isessionfactory;
+
         public NHibernateHelper()
         {
-            //创建ISessionFactory
-            _sessionFactory = GetSessionFactory();
+            _isessionfactory = BulidISessionFactory();
         }
-        public ISessionFactory GetSessionFactory()
+        public ISessionFactory BulidISessionFactory()
         {
-            //配置ISessionFactory
             return (new Configuration()).Configure().BuildSessionFactory();
         }
         public ISession GetSession()
         {
-            return _sessionFactory.OpenSession();
+            return _isessionfactory.OpenSession();
         }
     }
 }

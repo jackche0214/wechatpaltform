@@ -15,10 +15,11 @@
     <script src="~/Content/oa/scripts/xlayout.js"></script>
 <script type="text/javascript">
     $(function () {
-        alert(22)
-            load();
-        });
-        function load() {
+        alert(22);
+        load();
+    });
+    function load() {
+        alert(11);
             $('#gridView').treegrid({
                 url: '/WxMenu/MenuGridView',
                 title: '微信菜单配置',
@@ -197,7 +198,8 @@
                         displayMsg: '当前显示 {from} - {to} 条记录   共 {total} 条记录',
                         buttons: []
                     });
-                }
+                }
+
             });
         }
 
