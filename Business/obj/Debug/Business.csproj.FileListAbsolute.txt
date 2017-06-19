@@ -1,0 +1,13 @@
+E:\project\VS\weixinmenu\Business\bin\Debug\Business.dll
+E:\project\VS\weixinmenu\Business\bin\Debug\Business.pdb
+E:\project\VS\weixinmenu\Business\bin\Debug\Data.dll
+E:\project\VS\weixinmenu\Business\bin\Debug\Domain.OrmLib.dll
+E:\project\VS\weixinmenu\Business\bin\Debug\NHibernate.dll
+E:\project\VS\weixinmenu\Business\bin\Debug\Iesi.Collections.dll
+E:\project\VS\weixinmenu\Business\bin\Debug\Data.pdb
+E:\project\VS\weixinmenu\Business\bin\Debug\Domain.OrmLib.pdb
+E:\project\VS\weixinmenu\Business\bin\Debug\NHibernate.xml
+E:\project\VS\weixinmenu\Business\bin\Debug\Iesi.Collections.xml
+E:\project\VS\weixinmenu\Business\obj\Debug\Business.csprojResolveAssemblyReference.cache
+E:\project\VS\weixinmenu\Business\obj\Debug\Business.dll
+E:\project\VS\weixinmenu\Business\obj\Debug\Business.pdb

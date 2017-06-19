@@ -1,0 +1,11 @@
+E:\project\VS\weixinmenu\Data\bin\Debug\Data.dll
+E:\project\VS\weixinmenu\Data\bin\Debug\Data.pdb
+E:\project\VS\weixinmenu\Data\bin\Debug\Domain.OrmLib.dll
+E:\project\VS\weixinmenu\Data\bin\Debug\Iesi.Collections.dll
+E:\project\VS\weixinmenu\Data\bin\Debug\NHibernate.dll
+E:\project\VS\weixinmenu\Data\bin\Debug\Domain.OrmLib.pdb
+E:\project\VS\weixinmenu\Data\bin\Debug\Iesi.Collections.xml
+E:\project\VS\weixinmenu\Data\bin\Debug\NHibernate.xml
+E:\project\VS\weixinmenu\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache
+E:\project\VS\weixinmenu\Data\obj\Debug\Data.dll
+E:\project\VS\weixinmenu\Data\obj\Debug\Data.pdb
