@@ -14,6 +14,7 @@ using NHibernate.Linq;
 using System.Collections;
 using Newtonsoft.Json;
 using Business.weixin;
+using Business.Extsion;
 
 namespace weixinmenu.Controllers
 {
@@ -35,10 +36,19 @@ namespace weixinmenu.Controllers
         {
             return View();
         }
+        /// <summary>
+        /// 返回查询到的菜单json
+        /// </summary>
+        /// <param name="page"></param>
+        /// <param name="rows"></param>
+        /// <param name="sort"></param>
+        /// <param name="order"></param>
+        /// <returns></returns>
         public ActionResult MenuGridView(int? page, int? rows, string sort = "", string order = "asc")
         {
             return Content(GetMenuGridTree());
         }
+
         public string GetMenuGridTree()
         {
             NHibernateHelper nhlper = new NHibernateHelper();
@@ -108,6 +118,78 @@ namespace weixinmenu.Controllers
                 return Json(new { Success = false,Message = ex.Message });
             }
         }
+
+        public ActionResult MenuEdit(int id)
+        {
+            NHibernateHelper nhlper = new NHibernateHelper();
+            ISession session = nhlper.GetSession();
+            WeiXinMenu model = session.Get<WeiXinMenu>(id);
+
+            if (model == null)
+            {
+                model = new WeiXinMenu();
+                model.IsEnable = "1";
+                model.CreateTime = DateTime.Now;
+            }
+
+            return View(model);
+        }
+
+        public ActionResult MenuTree()
+        {
+            string ids = Request["ids"];
+            List<string> data = new List<string>();
+            if (ids.IsNotNull())
+            {
+                data = ids.ToStrList(',');
+            }
+             return Content(GetMenuComboTree(data));
+          
+        }
+        public static string GetMenuComboTree(List<string> data)
+        {
+            NHibernateHelper nhlper = new NHibernateHelper();
+            ISession session = nhlper.GetSession();
+            List<ComboTree> result = new List<ComboTree>();
+            List<ComboTree> children = new List<ComboTree>();
+            IEnumerable<WeiXinMenu> kinds = session.Query<WeiXinMenu>();
+            WeiXinMenu root = kinds.FirstOrDefault(c => c.ParentId == "-1");
+            GetMenuComboTree(kinds, children, root.MenuId, data);
+            result.Add(new ComboTree
+            {
+                id = root.MenuId.ToString(),
+                text = root.MenuName,
+                @checked = false,
+                children = children
+            });
+
+            return JsonConvert.SerializeObject(result);
+        }
+
+        public static void GetMenuComboTree(IEnumerable<WeiXinMenu> kinds,
+            List<ComboTree> children, string pId, List<string> data)
+        {
+            foreach (WeiXinMenu p in kinds.Where(c => c.ParentId == pId).OrderBy(c => c.OrderBy))
+            {
+                ComboTree gt = new ComboTree();
+                gt.id = p.MenuId;
+                gt.text = p.MenuName;
+
+                List<ComboTree> childrenTmp = new List<ComboTree>();
+                GetMenuComboTree(kinds, childrenTmp, p.MenuId, data);
+                gt.children = childrenTmp;
+                if (childrenTmp.Count == 0 && data.Contains(p.Id.ToString()))
+                {
+                    gt.@checked = true;
+                }
+                else
+                {
+                    gt.@checked = false;
+                }
+                children.Add(gt);
+            }
+        }
+
 
     }
 

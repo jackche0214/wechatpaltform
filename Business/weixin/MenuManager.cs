@@ -7,12 +7,20 @@ using System.Text;
 using System.Threading.Tasks;
 using NHibernate;
 using NHibernate.Linq;
+using Business.Extsion;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
+using Domain.OrmLib.Model;
 
 namespace Business.weixin
 {
-    public static class MenuManager
+    public class MenuManager
     {
         private static string url_menu_create = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=";
+
+        /// <summary>
+        /// 创建菜单函数。
+        /// </summary>
         public static void CreateMenu()
         {
             NHibernateHelper nhlper = new NHibernateHelper();
@@ -50,19 +58,17 @@ namespace Business.weixin
 
             menu += "]";
             menu += "}";
-
-        }
-
-        public static void Foreach<T>(this IEnumerable<T> list, Action<T> action)
-        {
-            foreach (T item in list)
+            string url = url_menu_create + AccessToken.Weixin_ACCESS_TOKEN;
+            string responsestring = HttpUtils.GetHttprequest(url);
+            JObject result = JsonConvert.DeserializeObject(responsestring) as JObject;
+            string errcode = result["errcode"].ToString();
+            string errmsg = result["errmsg"].ToString();
+            if (errcode != "0")
             {
-                action(item);
+                throw new Exception(Weixin_Errorcode.GetErrormsg(int.Parse(errcode)));
             }
         }
-        public static string FormartWith(this string value, params object[] obj)
-        {
-            return string.Format(value, obj);
-        }
+
+     
     }
 }

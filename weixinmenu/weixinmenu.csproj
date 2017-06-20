@@ -1772,6 +1772,8 @@
     <Content Include="Views\Shared\_GridView.cshtml" />
     <Content Include="Views\WxMenu\Menu.cshtml" />
     <Content Include="weixin.ashx" />
+    <Content Include="Views\Shared\_Form.cshtml" />
+    <Content Include="Views\WxMenu\MenuEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

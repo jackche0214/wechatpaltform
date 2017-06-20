@@ -25,5 +25,13 @@ namespace Domain.OrmLib.Model
             public string iconCls { get; set; }
             public List<TreeModel> children { get; set; }
         }
-    
+
+    public class ComboTree
+    {
+        public string id { get; set; }
+        public string text { get; set; }
+        public bool @checked { get; set; }
+        public List<ComboTree> children { get; set; }
+    }
+
 }

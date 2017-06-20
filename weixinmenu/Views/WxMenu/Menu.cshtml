@@ -15,7 +15,6 @@
     <script src="~/Content/oa/scripts/xlayout.js"></script>
 <script type="text/javascript">
     $(function () {
-        alert(22)
             load();
         });
         function load() {
@@ -92,7 +91,7 @@
                     text: '添加',
                     iconCls: 'icon-add',
                     handler: function () {
-                        showWindow("添加菜单", "/OA/WeiXin/MenuEdit/0", 700, 400);
+                        showWindow("添加菜单", "/WxMenu/MenuEdit/0", 700, 400);
                     }
                 }, {
                     id: 'btnAdd',
@@ -109,7 +108,7 @@
                             return;
                         }
 
-                        showWindow("添加菜单", "/OA/WeiXin/MenuEdit/" + row.Id, 700, 400);
+                        showWindow("添加菜单", "/WxMenu/MenuEdit/" + row.Id, 700, 400);
                     }
                 },
                 {

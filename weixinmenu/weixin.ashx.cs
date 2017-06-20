@@ -9,7 +9,7 @@ using System.Text;
 namespace weixinmenu
 {
     /// <summary>
-    /// weixin 的摘要说明
+    /// 对接微信公众平台的一般处理程序，主要是对HttpContext的摘要说明
     /// </summary>
     public class weixin : IHttpHandler
     {
