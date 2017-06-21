@@ -59,7 +59,7 @@ namespace Business.weixin
             menu += "]";
             menu += "}";
             string url = url_menu_create + AccessToken.Weixin_ACCESS_TOKEN;
-            string responsestring = HttpUtils.GetHttprequest(url);
+            string responsestring = HttpUtils.SendHttprequest(url,menu);
             JObject result = JsonConvert.DeserializeObject(responsestring) as JObject;
             string errcode = result["errcode"].ToString();
             string errmsg = result["errmsg"].ToString();

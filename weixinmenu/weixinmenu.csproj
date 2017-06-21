@@ -194,6 +194,15 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\configuration\js\calendar.js" />
+    <Content Include="Content\configuration\js\DateOut.js" />
+    <Content Include="Content\configuration\js\jquery-compressed.js" />
+    <Content Include="Content\configuration\js\jspublic.js" />
+    <Content Include="Content\configuration\js\newsJs.js" />
+    <Content Include="Content\configuration\js\Prototype.js" />
+    <Content Include="Content\configuration\js\public.js" />
+    <Content Include="Content\configuration\js\thickbox_zh.js" />
+    <Content Include="Content\configuration\js\unNewsjs.js" />
     <Content Include="Content\easyui\bootbox.min.js" />
     <Content Include="Content\easyui\jquery-easyui-1.3.5\changelog.txt" />
     <Content Include="Content\easyui\jquery-easyui-1.3.5\demo\accordion\actions.html" />
@@ -1777,6 +1786,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\configuration\config\" />
     <Folder Include="Content\js\xScript\ichartjs-ichartjs1.2\" />
     <Folder Include="Content\js\xScript\My97DatePicker\" />
   </ItemGroup>

@@ -43,7 +43,32 @@ function OpenDialog(url, width, height, title) {
     showWindow(title, url, width, height);
 }
 
+function newshowWindow(title, href, width, height, modal, minimizable, maximizable)
+{
+    $('body').append('<div id="children_window' 
+      + '" class="easyui-dialog" data-options="iconCls:\'icon-save\'" closed="true"></div>');
+    $('#children_window' ).window({
+        title: title,
+        width: width === undefined ? 600 : width,
+        height: height === undefined ? 400 : height,
+        content: '<iframe scrolling="yes" frameborder="0" id="iframe' + id
+            + '"  src="' + href + '" style="width:100%;height:98%;"></iframe>',
+        //        href: href === undefined ? null : href,
+        modal: modal === undefined ? true : modal,
+        minimizable: minimizable === undefined ? false : minimizable,
+        maximizable: maximizable === undefined ? false : maximizable,
+        shadow: false,
+        cache: false,
+        closed: false,
+        collapsible: false,
+        resizable: false,
+        loadingMessage: '正在加载数据，请稍等片刻......'
+    });
+
+}
+
 function showWindow(title, href, width, height, modal, minimizable, maximizable) {
+    debugger
     var id = getWindowId(href);
     $('body').append('<div id="window' + id
         + '" class="easyui-dialog" data-options="iconCls:\'icon-save\'" closed="true"></div>');
@@ -71,6 +96,8 @@ $(function () {
 });
 
 function CloseWindow(id) {
+    alert(456)
+    debugger
     id = id.replace("#", "");
     $('#window' + id).window('close');
 }

@@ -118,7 +118,56 @@ namespace weixinmenu.Controllers
                 return Json(new { Success = false,Message = ex.Message });
             }
         }
+        /// <summary>
+        /// 保存更新操作
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public JsonResult MenuSaveOrUpdate(WeiXinMenu model)
+        {
+            try
+            {
+                NHibernateHelper nhlper = new NHibernateHelper();
+                ISession session = nhlper.GetSession();
+                session.SaveOrUpdate(model);
+                session.Flush();
+                return Json(new { Success = true,Message = "保存成功"});
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Success=false,Message = ex.Message});
+            }
+        }
+        /// <summary>
+        /// 菜单删除函数
+        /// </summary>
+        /// <param name="ids"></param>
+        /// <returns></returns>
+        public JsonResult MenuDelete(string ids)
+        {
+            try
+            {
+                NHibernateHelper nhlper = new NHibernateHelper();
+                ISession session = nhlper.GetSession();
+                string[] idss= ids.Split('\'');
+                string idsss = idss[1];
+                int id = int.Parse(idsss);
+                WeiXinMenu tmpentites = session.Get<WeiXinMenu>(id);
+                session.Delete(tmpentites);
+                session.Flush();
+                return Json(new { Success = true,Message = "删除成功"});
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Success=false,Message = ex.Message});
+            }
+        }
 
+        /// <summary>
+        /// 菜单编辑函数
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult MenuEdit(int id)
         {
             NHibernateHelper nhlper = new NHibernateHelper();
