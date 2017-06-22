@@ -97,7 +97,7 @@
     }
 
 @section scripts {
-
+<script src="~/Content/oa/scripts/xlayout.js"></script>
 <script type="text/javascript">
     $(function () {
         $('#ParentId').combotree({
@@ -112,14 +112,10 @@
         });
         $('#MenuType').combobox('setValue', '@Model.MenuType');
         $('#IsEnable').combobox('setValue', '@Model.IsEnable');
-        $('#cl').click(function () {
-            close()
-        });
     })
 
 
     function save() {
-        debugger
         var dataForm = $("#dataForm").form('validate');
         if (!dataForm) return;
 
@@ -131,10 +127,10 @@
             type: "POST",
             traditional: true,
             success: function (result) {
+                
                 if (result.Success) {
-                    var url = window.location.host + "/WxMenu/Menu";
-                    alert(url)
-                    $('#children_window').window('close');
+                    showMsg("系统提示", result.Message, false);
+                    parent.location.reload();
                 } else {
                     showMsg("系统提示", result.Message, false);
                 }
@@ -142,7 +138,17 @@
         });
         return false;
     }
-
+    function showMsg(title, msg, isAlert) {
+        if (isAlert !== undefined && isAlert) {
+            $.messager.alert(title, msg);
+        } else {
+            $.messager.show({
+                title: title,
+                msg: msg,
+                showType: 'show'
+            });
+        }
+    }
 
     </script>
 

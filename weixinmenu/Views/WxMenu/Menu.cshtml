@@ -11,11 +11,11 @@
 </div>
     }
 @section scripts{
-
+<script src="~/Content/oa/scripts/xlayout.js"></script>
   
 <script type="text/javascript">
     $(function () {
-            load();
+        load();
         });
         function load() {
             $('#gridView').treegrid({
@@ -91,7 +91,7 @@
                     text: '添加',
                     iconCls: 'icon-add',
                     handler: function () {
-                        showWindow("添加菜单", "/WxMenu/MenuEdit/0", 700, 400);
+                        newshowWindow("添加菜单", "/WxMenu/MenuEdit/0", 700, 400);
                     }
                 }, {
                     id: 'btnAdd',
@@ -108,7 +108,7 @@
                             showMsg("系统提示", "此数据不能修改", true);
                             return;
                         }
-                        newshowWindow("添加大菜单", "/WxMenu/MenuEdit/" + row.Id, 700, 400);
+                        newshowWindow("添加菜单", "/WxMenu/MenuEdit/" + row.Id, 700, 400);
                        // showWindow("添加菜单", "/WxMenu/MenuEdit/" + row.Id, 700, 400);
                     }
                 },
@@ -207,19 +207,18 @@
         }
 
         function newshowWindow(title, href, width, height, modal, minimizable, maximizable) {
-
-            $('body').append('<div id="children_window'
-              + '" class="easyui-dialog" data-options="iconCls:\'icon-save\'" closed="true"></div>');
-            $('#children_window').window({
+            $('body').append('<div id="win'
+              + '" class="easyui-window" data-options="iconCls:\'icon-save\',modal:true" closed="true"> </div>');
+            $('#win').window({
                 title: title,
                 width: width === undefined ? 600 : width,
                 height: height === undefined ? 400 : height,
                 content: '<iframe scrolling="yes" frameborder="0" id="iframe' 
-                    + '"  src="' + href + '" style="width:100%;height:98%;"></iframe>',
+                    + '"  src="' + href + '" style="width:100%;height:98%;"></iframe>' ,
                 //        href: href === undefined ? null : href,
-                modal: modal === undefined ? true : modal,
-                minimizable: minimizable === undefined ? false : minimizable,
-                maximizable: maximizable === undefined ? false : maximizable,
+                modal: modal == undefined ? true : modal,
+                minimizable: minimizable == undefined ? false : minimizable,
+                maximizable: maximizable == undefined ? false : maximizable,
                 shadow: false,
                 cache: false,
                 closed: false,
@@ -229,7 +228,14 @@
             });
 
         }
-
+        function showConfirm(title, msg, callback) {
+            $.messager.confirm(title, msg, function (r) {
+                if (r) {
+                    if (jQuery.isFunction(callback))
+                        callback.call();
+                }
+            });
+        }
        
 </script>}
 
