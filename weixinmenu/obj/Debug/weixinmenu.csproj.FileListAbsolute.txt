@@ -115,7 +115,6 @@ E:\project\GIT\wechatpaltform\weixinmenu\bin\Microsoft.Owin.Security.MicrosoftAc
 E:\project\GIT\wechatpaltform\weixinmenu\bin\Microsoft.Owin.Security.OAuth.dll
 E:\project\GIT\wechatpaltform\weixinmenu\bin\Microsoft.Owin.Security.Twitter.dll
 E:\project\GIT\wechatpaltform\weixinmenu\bin\Microsoft.Web.Infrastructure.dll
-E:\project\GIT\wechatpaltform\weixinmenu\bin\Newtonsoft.Json.dll
 E:\project\GIT\wechatpaltform\weixinmenu\bin\NHibernate.dll
 E:\project\GIT\wechatpaltform\weixinmenu\bin\Owin.dll
 E:\project\GIT\wechatpaltform\weixinmenu\bin\System.Web.Helpers.dll
@@ -140,7 +139,6 @@ E:\project\GIT\wechatpaltform\weixinmenu\bin\System.Web.WebPages.xml
 E:\project\GIT\wechatpaltform\weixinmenu\bin\System.Web.WebPages.Deployment.xml
 E:\project\GIT\wechatpaltform\weixinmenu\bin\System.Web.WebPages.Razor.xml
 E:\project\GIT\wechatpaltform\weixinmenu\bin\Antlr3.Runtime.pdb
-E:\project\GIT\wechatpaltform\weixinmenu\bin\Newtonsoft.Json.xml
 E:\project\GIT\wechatpaltform\weixinmenu\bin\EntityFramework.xml
 E:\project\GIT\wechatpaltform\weixinmenu\bin\EntityFramework.SqlServer.xml
 E:\project\GIT\wechatpaltform\weixinmenu\bin\Microsoft.AspNet.Identity.Core.xml
@@ -177,3 +175,5 @@ E:\project\GIT\wechatpaltform\weixinmenu\bin\zh-Hans\Microsoft.Owin.Security.Fac
 E:\project\GIT\wechatpaltform\weixinmenu\bin\zh-Hans\Microsoft.Owin.Security.Google.resources.dll
 E:\project\GIT\wechatpaltform\weixinmenu\bin\zh-Hans\Microsoft.Owin.Security.Twitter.resources.dll
 E:\project\GIT\wechatpaltform\weixinmenu\bin\zh-Hans\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
+E:\project\GIT\wechatpaltform\weixinmenu\bin\Newtonsoft.Json.dll
+E:\project\GIT\wechatpaltform\weixinmenu\bin\Newtonsoft.Json.xml
