@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_GridView.cshtml";
+}
+
+<h2>Login</h2>
+@section header{}
+@section body{
+@using (Html.BeginForm("ConfirmLogin", "Users", FormMethod.Post, new { id = "dataForm" }))
+{
+    <table class="datalistDaily" cellpadding="5" style="font-size:12px;margin-top:10px;margin-left:10px;">
+        <tr>
+            <td style="text-align:right;">登录名：</td>
+            <td>
+                <input class="easyui-textbox" id="UserName" name="UserName"
+                       style="width:300px;" data-options="required:true" value="" />
+            </td>
+         </tr>
+        <tr>
+            <td style="text-align:right;">密码：</td>
+            <td>
+                <input class="easyui-textbox" id="PassWord" name="PassWord"
+                       style="width:300px;" data-options="required:true" value="" />
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <a icon="icon-ok" class="easyui-linkbutton" onclick="Submit()">登录</a>
+                <a icon="icon-redo" class="easyui-linkbutton" href="~/Users/register" style="display:none">注册</a>
+            </td>
+        </tr>
+</table>
+}
+    }
+
+@section scripts{
+<script src="~/Content/oa/scripts/xlayout.js"></script>
+    <script type="text/javascript">
+
+        function Submit()
+        {
+            var dataForm = $("#dataForm").form('validate');
+            if (!dataForm) return;
+            $.ajax({
+                url: "/Users/ConfirmLogin",
+                data: $("#dataForm").serialize(),
+                dataType: "json",
+                type: "POST",
+                traditional: true,
+                success: function (result) {
+                    if (result.Success)
+                    {
+                        alert(result.Message)
+                        location.href = "/WxMenu/Menu";
+                        return true;
+                    }else
+                    {
+                        $("#UserName").val("");
+                        $("#PassWord").val("");
+                        $("#UserName").focus();
+                        alert(result.Message);
+                        return false;
+                    }
+                }
+            });
+        }
+
+    </script>
+
+    }
+

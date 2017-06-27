@@ -1,0 +1,73 @@
+﻿<?xml version="1.0"  encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="Domain.OrmLib" namespace="Domain.OrmLib">
+	<class name="Domain.OrmLib.Entity.NT_sys_User, Domain.OrmLib" table="NT_sys_User">
+    <id name="Id" column="Id" type="long">
+      <generator class="native" />
+    </id>
+    <property name="UserNum" column="UserNum" type="string"  />    		
+		<property name="UserName" column="UserName" type="string"  />
+		<property name="UserPassword" column="UserPassword" type="string"  />
+		<property name="PayPassword" column="PayPassword" type="string"  />
+		<property name="NickName" column="NickName" type="string"  />
+		<property name="RealName" column="RealName" type="string"  />
+		<property name="isAdmin" column="isAdmin" type="int"  />
+		<property name="UserGroupNumber" column="UserGroupNumber" type="string"  />
+		<property name="PassQuestion" column="PassQuestion" type="string"  />
+		<property name="PassKey" column="PassKey" type="string"  />
+		<property name="CertType" column="CertType" type="string"  />
+		<property name="CertNumber" column="CertNumber" type="string"  />
+		<property name="Email" column="Email" type="string"  />
+		<property name="mobile" column="mobile" type="string"  />
+		<property name="Sex" column="Sex" type="int"  />
+		<property name="birthday" column="birthday" type="DateTime"  />
+		<property name="Userinfo" column="Userinfo" type="string"  />
+		<property name="UserFace" column="UserFace" type="string"  />
+		<property name="userFacesize" column="userFacesize" type="string"  />
+		<property name="marriage" column="marriage" type="int"  />
+		<property name="iPoint" column="iPoint" type="int"  />
+		<property name="gPoint" column="gPoint" type="int"  />
+		<property name="cPoint" column="cPoint" type="int"  />
+		<property name="ePoint" column="ePoint" type="int"  />
+		<property name="aPoint" column="aPoint" type="int"  />
+		<property name="isLock" column="isLock" type="int"  />
+		<property name="RegTime" column="RegTime" type="DateTime"  />
+		<property name="LastLoginTime" column="LastLoginTime" type="DateTime"  />
+		<property name="OnlineTime" column="OnlineTime" type="int"  />
+		<property name="OnlineTF" column="OnlineTF" type="int"  />
+		<property name="LoginNumber" column="LoginNumber" type="int"  />
+		<property name="FriendClass" column="FriendClass" type="string"  />
+		<property name="LoginLimtNumber" column="LoginLimtNumber" type="int"  />
+		<property name="LastIP" column="LastIP" type="string"  />
+		<property name="SiteID" column="SiteID" type="string"  />
+		<property name="Addfriend" column="Addfriend" type="int"  />
+		<property name="isOpen" column="isOpen" type="int"  />
+		<property name="ParmConstrNum" column="ParmConstrNum" type="int"  />
+		<property name="isIDcard" column="isIDcard" type="int"  />
+		<property name="IDcardFiles" column="IDcardFiles" type="string"  />
+		<property name="Addfriendbs" column="Addfriendbs" type="int"  />
+		<property name="EmailATF" column="EmailATF" type="int"  />
+		<property name="EmailCode" column="EmailCode" type="string"  />
+		<property name="isMobile" column="isMobile" type="int"  />
+		<property name="BindTF" column="BindTF" type="int"  />
+		<property name="MobileCode" column="MobileCode" type="string"  />
+		<property name="IsUpdate" column="IsUpdate" type="string"  />
+		<property name="isseller" column="isseller" type="int"  />
+		<property name="OwnerAny" column="OwnerAny" type="string"  />
+		<property name="userType" column="userType" type="int"  />
+		<property name="PromotionCode" column="PromotionCode" type="string"  />
+		<property name="AccountStatus" column="AccountStatus" type="string"  />
+		<property name="AccountType" column="AccountType" type="string"  />
+		<property name="AccountBankCard" column="AccountBankCard" type="string"  />
+		<property name="AccountICard" column="AccountICard" type="string"  />
+		<property name="AccountUrl" column="AccountUrl" type="string"  />
+		<property name="AccountExtension" column="AccountExtension" type="string"  />
+		<property name="AccountBankCardName" column="AccountBankCardName" type="string"  />
+		<property name="backPoint" column="backPoint" type="decimal"  />
+		<property name="backPointPrice" column="backPointPrice" type="decimal"  />
+		<property name="QrCode" column="QrCode" type="string"  />
+		<property name="QrCodeUrl" column="QrCodeUrl" type="string"  />
+		<property name="Token" column="Token" type="string"  />
+		<property name="WxPlat_Openid" column="WxPlat_Openid" type="string"  />
+				
+	</class>
+</hibernate-mapping>
