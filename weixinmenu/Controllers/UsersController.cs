@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using Domain.OrmLib.Entity;
 using Business.Extsion;
+using System.Web.Security;
 
 namespace weixinmenu.Controllers
 {
@@ -53,6 +54,7 @@ namespace weixinmenu.Controllers
                         throw new Exception("密码错误");
                     }
                 }
+                FormsAuthentication.SetAuthCookie(UserName, false);//添加认证信息 
                 return Json(new { Success = true, Message = "登录成功" });
             }
             catch (Exception ex)

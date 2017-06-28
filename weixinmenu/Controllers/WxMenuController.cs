@@ -15,6 +15,7 @@ using System.Collections;
 using Newtonsoft.Json;
 using Business.weixin;
 using Business.Extsion;
+using System.Web.Security;
 
 namespace weixinmenu.Controllers
 {
@@ -35,7 +36,25 @@ namespace weixinmenu.Controllers
         }
         public ActionResult Menu()
         {
-            return View();
+
+            if (System.Web.Security.FormsAuthentication.GetAuthCookie("UserName", false) != null)
+            {
+                if (Request.Cookies[System.Web.Security.FormsAuthentication.FormsCookieName].Value != null)
+                {
+                    string str = Request.Cookies[System.Web.Security.FormsAuthentication.FormsCookieName].Value;
+                    FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(str);
+                    ViewBag.UserName = ticket.Name;
+                    return View();
+                }
+                else {
+                    return
+                    RedirectToAction("Login", "Users");
+                }
+
+            }
+           
+            return null;
+            
         }
         /// <summary>
         /// 返回查询到的菜单json
