@@ -34,26 +34,16 @@ namespace weixinmenu.Controllers
             ViewBag.root = kinds;
             return View(root);
         }
+        [Filter.CheckCustomer]
         public ActionResult Menu()
         {
-
-            if (System.Web.Security.FormsAuthentication.GetAuthCookie("UserName", false) != null)
+            System.Web.HttpContext curContext = System.Web.HttpContext.Current;
+            if (curContext.Session["UserName"] != null)
             {
-                if (Request.Cookies[System.Web.Security.FormsAuthentication.FormsCookieName].Value != null)
-                {
-                    string str = Request.Cookies[System.Web.Security.FormsAuthentication.FormsCookieName].Value;
-                    FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(str);
-                    ViewBag.UserName = ticket.Name;
-                    return View();
-                }
-                else {
-                    return
-                    RedirectToAction("Login", "Users");
-                }
-
+                ViewBag.UserName = curContext.Session["UserName"].ToString();
             }
-           
-            return null;
+            
+            return View();
             
         }
         /// <summary>

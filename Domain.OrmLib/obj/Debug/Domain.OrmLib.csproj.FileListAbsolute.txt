@@ -7,4 +7,3 @@ E:\project\GIT\wechatpaltform\Domain.OrmLib\bin\Debug\Domain.OrmLib.dll
 E:\project\GIT\wechatpaltform\Domain.OrmLib\bin\Debug\Domain.OrmLib.pdb
 E:\project\GIT\wechatpaltform\Domain.OrmLib\obj\Debug\Domain.OrmLib.dll
 E:\project\GIT\wechatpaltform\Domain.OrmLib\obj\Debug\Domain.OrmLib.pdb
-E:\project\GIT\wechatpaltform\Domain.OrmLib\obj\Debug\Domain.OrmLib.csprojResolveAssemblyReference.cache

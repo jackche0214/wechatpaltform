@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using Domain.OrmLib.Entity;
 using Business.Extsion;
 using System.Web.Security;
+using NHibernate.Linq;
 
 namespace weixinmenu.Controllers
 {
@@ -55,6 +56,7 @@ namespace weixinmenu.Controllers
                     }
                 }
                 FormsAuthentication.SetAuthCookie(UserName, false);//添加认证信息 
+                Session["UserName"] = UserName;
                 return Json(new { Success = true, Message = "登录成功" });
             }
             catch (Exception ex)
