@@ -55,8 +55,8 @@ namespace weixinmenu.Controllers
                         throw new Exception("密码错误");
                     }
                 }
-                FormsAuthentication.SetAuthCookie(UserName, false);//添加认证信息 
-                Session["UserName"] = UserName;
+                //FormsAuthentication.SetAuthCookie(UserName, false);//添加认证信息 
+                Session["UserName"] = UserName;//添加认证信息
                 return Json(new { Success = true, Message = "登录成功" });
             }
             catch (Exception ex)

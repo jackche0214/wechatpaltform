@@ -19,7 +19,7 @@ using System.Web.Security;
 
 namespace weixinmenu.Controllers
 {
-   
+    [Filter.LoginFilter]
     public class WxMenuController : Controller
     {
         // GET: WxMenu
@@ -34,7 +34,7 @@ namespace weixinmenu.Controllers
             ViewBag.root = kinds;
             return View(root);
         }
-        [Filter.CheckCustomer]
+        
         public ActionResult Menu()
         {
             System.Web.HttpContext curContext = System.Web.HttpContext.Current;
@@ -248,7 +248,6 @@ namespace weixinmenu.Controllers
                 children.Add(gt);
             }
         }
-
 
     }
 

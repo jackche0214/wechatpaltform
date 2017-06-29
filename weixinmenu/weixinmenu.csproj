@@ -183,6 +183,7 @@
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\WxMenuController.cs" />
     <Compile Include="Filter\CheckCustomerAttribute.cs" />
+    <Compile Include="Filter\LoginFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
