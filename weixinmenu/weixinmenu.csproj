@@ -180,6 +180,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MobileController\IhuyiController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\WxMenuController.cs" />
     <Compile Include="Filter\CheckCustomerAttribute.cs" />
@@ -197,6 +198,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\appCommon.css" />
+    <Content Include="Content\appCommon.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\configuration\js\calendar.js" />
@@ -1304,6 +1307,7 @@
     <Content Include="Content\easyui\jquery-easyui-1.4.1\themes\metro\validatebox.css" />
     <Content Include="Content\easyui\jquery-easyui-1.4.1\themes\metro\window.css" />
     <Content Include="Content\easyui\StyleSheet1.css" />
+    <Content Include="Content\jquery.dbcMessage.js" />
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\Common.js" />
     <Content Include="Content\js\jfdb\29bd13ceae33ed521d965e3b4208a3f083d31401.js" />
@@ -1621,6 +1625,7 @@
     <Content Include="hibernate.cfg.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Mobile\Ihuyi_recharge_mobile.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\easyui\jquery-easyui-1.3.5\demo\accordion\datagrid_data1.json" />
@@ -1801,6 +1806,7 @@
     <Folder Include="Content\configuration\config\" />
     <Folder Include="Content\js\xScript\ichartjs-ichartjs1.2\" />
     <Folder Include="Content\js\xScript\My97DatePicker\" />
+    <Folder Include="Views\Ihuyi\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

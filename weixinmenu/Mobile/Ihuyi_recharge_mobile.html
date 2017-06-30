@@ -1,0 +1,748 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>居民服务网</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.2/css/bootstrap.min.css" />
+
+    <!-- 可选的Bootstrap主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.2/css/bootstrap-theme.min.css" />
+
+    <!-- icheck 核心 CSS 文件 -->
+    <link href="../Content/js/xScript/Bootstrap/icheck-1.x/skins/square/green.css" rel="stylesheet" />
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+    <!-- icheck 核心 JavaScript 文件 -->
+    <script src="../Content/js/xScript/Bootstrap/icheck-1.x/icheck.min.js"></script>
+    <link href="../Content/js/xScript/Bootstrap/icheck-1.x/skins/square/blue.css" rel="stylesheet" />
+    <link href="../Content/appCommon.css" rel="stylesheet" />
+    <script src="../Content/appCommon.js"></script>
+
+    <link href="../Content/easyui/jquery-easyui-1.4.1/themes/gray/easyui.css" rel="stylesheet" />
+    <link href="../Content/easyui/jquery-easyui-1.4.1/themes/icon.css" rel="stylesheet" />
+
+    <script src="../Content/jquery.dbcMessage.js"></script>
+    <script src="../Content/easyui/jquery-easyui-1.4.1/jquery.easyui.min.js"></script>
+    <style type="text/css">
+        body {
+            text-align: center;
+            padding-top: 20px;
+        }
+
+        #mobileNo {
+            font-size: 14px;
+            font-weight: 700;
+            color: #000;
+        }
+
+        table.mobile tr td {
+            padding: 10px;
+        }
+
+        .dataContainer {
+            margin-top: 10px;
+            margin: auto;
+            width: 90%;
+            text-align: left;
+        }
+
+
+        #mobilePrice {
+            display: none;
+        }
+
+        .mobilePrice {
+            font-weight: 400;
+            color: #c40000;
+            font-size: 18px;
+        }
+
+        #mobileAdress {
+            display: none;
+        }
+
+        #mobileInfo {
+            display: none;
+        }
+    </style>
+    <style>
+        .ipt-box-nick {
+            width: 215px;
+            height: 35px !important;
+            float: left;
+            line-height: 40px !important;
+            position: relative !important;
+        }
+
+            .ipt-box-nick .ipt-real-nick {
+                position: absolute !important;
+                top: 0 !important;
+                left: 0 !important;
+                width: 100%;
+                height: 35px !important;
+                line-height: 35px !important;
+                opacity: 0 !important;
+                z-index: 3 !important;
+            }
+
+            .ipt-box-nick .ipts-box-nick {
+                position: absolute !important;
+                top: 0 !important;
+                left: 0 !important;
+                z-index: 1 !important;
+                width: 100%;
+                height: 35px !important;
+                line-height: 35px !important;
+                overflow: hidden;
+            }
+
+                .ipt-box-nick .ipts-box-nick .ipt-fake-box {
+                    height: 35px !important;
+                    line-height: 35px !important;
+                    display: flex !important;
+                }
+
+                    .ipt-box-nick .ipts-box-nick .ipt-fake-box input {
+                        width: 35px !important;
+                        height: 34px !important;
+                        border: 1px solid #D7D7D7 !important;
+                        color: #0F0F0F !important;
+                        font-weight: bold !important;
+                        font-size: 18px !important;
+                        text-align: center !important;
+                        padding: 0px !important;
+                        float: left;
+                        border-radius: 4px;
+                    }
+
+            .ipt-box-nick .ipt-active-nick {
+                width: 35px !important;
+                height: 35px !important;
+                line-height: 35px !important;
+                text-align: center;
+                position: absolute !important;
+                top: 0;
+                left: 0;
+                z-index: 2;
+            }
+
+                .ipt-box-nick .ipt-active-nick img {
+                    vertical-align: middle;
+                }
+    </style>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+            font-size: 12px;
+        }
+
+        .white_content {
+            display: none;
+            position: absolute;
+            top: 5%;
+            left: 3%;
+            right: 3%;
+            height: 40%;
+            padding: 6px 6px;
+            border: 1px solid #D6E9F1;
+            border-radius: 8px;
+            background-color: white;
+            z-index: 1002;
+            overflow: auto;
+        }
+
+        .black_overlay {
+            display: none;
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            width: 100%;
+            height: 100%;
+            background-color: #f5f5f5;
+            z-index: 1001;
+            -moz-opacity: 0.8;
+            opacity: .80;
+            filter: alpha(opacity=80);
+        }
+
+        .close {
+            float: right;
+            clear: both;
+            width: 1px;
+            text-align: left;
+            margin: 0 0 0 0;
+        }
+
+            .close a {
+                color: gainsboro;
+                text-decoration: none;
+                font-size: 16px;
+                font-weight: 3px;
+            }
+    </style>
+    <script>
+function show(tag){
+ var light=document.getElementById(tag);
+ var fade=document.getElementById('fade');
+ light.style.display='block';
+ fade.style.display='block';
+ }
+function hide(tag){
+ var light=document.getElementById(tag);
+ var fade=document.getElementById('fade');
+ light.style.display='none';
+ fade.style.display='none';
+}
+    </script>
+</head>
+<body>
+    <div class="dataContainer">
+        <table class="mobile">
+            <tr>
+                <td>
+                    <input type="tel" id="mobileNo" class="form-control" name="mobileNo" placeholder="输入手机号码" />
+                </td>
+            </tr>
+            <tr id="mobileInfo">
+                <td>
+                    <span class="mobileInfo"></span>
+                </td>
+            </tr>
+            <tr id="mobileAdress">
+                <td>
+                    <input type="radio" id="mobileType" checked="checked" />
+                    <label for="mobileType" class="mobileAdress">重庆移动</label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="freeContainer">
+                        <ul>
+                            <li>
+                                <input type="radio" id="Alipay-20" name="alipay-square-radio" />
+                                <label for="Alipay-20">20元</label>
+                            </li>
+                            <li>
+                                <input type="radio" id="Alipay-30" name="alipay-square-radio" />
+                                <label for="Alipay-30">30元</label>
+                            </li>
+                            <li>
+                                <input type="radio" id="Alipay-50" name="alipay-square-radio" checked="checked" />
+                                <label for="Alipay-50">50元</label>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li>
+                                <input type="radio" id="Alipay-100" name="alipay-square-radio" />
+                                <label for="Alipay-100">100元</label>
+                            </li>
+                            <li>
+                                <input type="radio" id="Alipay-200" name="alipay-square-radio" />
+                                <label for="Alipay-200">200元</label>
+                            </li>
+                            <li>
+                                <input type="radio" id="Alipay-300" name="alipay-square-radio" />
+                                <label for="Alipay-300">300元</label>
+                            </li>
+                            <li>
+                                <input type="radio" id="Alipay-500" name="alipay-square-radio" />
+                                <label for="Alipay-500">500元</label>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+            <tr id="mobilePrice">
+                <td>
+                    <label>销售价格：</label> <span class="mobilePrice">0.00</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="payType" >
+                        <label>支付方式：</label>
+                        <input type="radio" id="Alipay" name="square-radio" checked="checked" />
+                        <label for="Alipay">支付宝</label><br />
+                        <label>&#12288;&#12288;&#12288;&#12288;&#12288 </label>
+                        <input type="radio" id="UnionPay" name="square-radio" />
+                        <label for="UnionPay">银联</label><br />
+                        <label>&#12288;&#12288;&#12288;&#12288;&#12288 </label>
+                        <input type="radio" id="WeixinPay" name="square-radio" />
+                        <label for="WeixinPay">微信</label><br />
+                        <label>&#12288;&#12288;&#12288;&#12288;&#12288 </label>
+                        <input type="radio" id="jmfww" name="square-radio" />
+                        <label for="jmfww">个人帐户</label><br />
+                        <label>&#12288;&#12288;&#12288;&#12288;&#12288 </label>
+                        <input type="radio" id="integral" name="square-radio" />
+                        <label for="integral">积分</label>
+
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <button style="display:none;" id="submitQuery" disabled="disabled" type="button" class="btn btn-primary">余额查询</button>
+                    <button id="submitFree" type="button" class="btn btn-success">立即充值</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+
+
+        var userNum = QueryUrlParameter("userNum");
+        var userName = QueryUrlParameter("userName");
+
+
+        var itemId = "";
+        var province = "";
+        var city = "";
+        var operator = "";
+        var advicePrice = "0.00";
+
+        function validatemobile(mobile) {
+            $("#submitFree").attr("disabled", "disabled");
+            if (mobile.length == 0) {
+                return false;
+            }
+            if (mobile.length != 11) {
+                return false;
+            }
+
+            var myreg = /^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/;
+            if (!myreg.test(mobile)) {
+                return false;
+            }
+
+            $("#submitFree").removeAttr("disabled");
+            return true;
+        }
+
+        function getItemInfo() {
+            debugger
+            var mobileNo = $("#mobileNo").val();
+            if (!validatemobile(mobileNo)) return;
+            var rechargeAmount = $("#freeContainer input[type='radio']:checked").attr("id").replace("Alipay-", "");
+
+            $("#mobileInfo").hide().find(".mobileInfo").html("");
+
+            $.ajax({
+                url: '/MobileController/Ihuyi/GetItemInfo',
+                type: 'POST',
+                data: {
+                    mobileNo: mobileNo,
+                    rechargeAmount: rechargeAmount,
+                    userNum: userNum,
+                    userName: userName
+                },
+                dataType: 'json',
+                async: true,
+                beforeSend: function () {
+                    $("#submitQuery").attr("disabled", "disabled");
+                    $("#submitFree").attr("disabled", "disabled").html('查询中,请稍等...');
+                },
+                error: function () {
+                },
+                success: function (json) {
+                    if (json.Success) {
+                        $("#submitQuery").removeAttr("disabled");
+                        $("#submitFree").removeAttr("disabled").html('立即充值');
+
+                        itemId = json.Message.ItemId;
+                        $("#mobileAdress").show();
+                        $("#mobileAdress .mobileAdress").html(json.Message.Province + json.Message.City + json.Message.Operator);
+                        $("#mobilePrice").show();
+                        $("#mobilePrice .mobilePrice").html("￥ " + json.Message.AdvicePrice);
+                        advicePrice = json.Message.AdvicePrice;
+
+                        if (json.Province != "全国") {
+                            province = json.Message.Province;
+                            city = json.Message.City;
+                            operator = json.Message.Operator;
+                        }
+                    } else {
+                        $("#submitFree").html('立即充值');
+                        $("#mobileAdress").hide();
+                        $("#mobileAdress .mobileAdress").html("");
+                        $("#mobilePrice").hide();
+                        $("#mobilePrice .mobilePrice").html("");
+
+                        Alert(json.Message);
+                    }
+                }
+            });
+        }
+
+        function getPhoneInfo() {
+            var mobileNo = $("#mobileNo").val();
+
+            if (!validatemobile(mobileNo)) {
+                Alert("请输入有效的手机号码！");
+                return;
+            }
+
+            $.ajax({
+                url: '/Web/Mobile/GetPhoneInfo',
+                type: 'POST',
+                data: {
+                    'stamp': Math.random(),
+                    phoneNo: mobileNo,
+                    province: province,
+                    city: city,
+                    operator: operator,
+                    userNum: userNum,
+                    userName: userName
+                },
+                dataType: 'json',
+                async: true,
+                beforeSend: function () {
+                    loading('查询中...');
+                },
+                error: function () {
+                },
+                success: function (json) {
+                    loading(false);
+                    if (json.Success == false) {
+                        $("#mobileInfo").show().find(".mobileInfo").html(json.Message);
+                    } else {
+                        $("#mobileInfo").show().find(".mobileInfo").html(json.Message.Detail);
+                    }
+                }
+            });
+        }
+
+        function createBill(mobileNo, payType) {
+            var rechargeAmount = $("#freeContainer input[type='radio']:checked").attr("id").replace("Alipay-", "");
+            var advicePrice = rechargeAmount;
+            $.ajax({
+                url: '/Web/Mobile/CreateBill',
+                type: 'POST',
+                data: {
+                    mobileNo: mobileNo,
+                    rechargeAmount: rechargeAmount,
+                    itemId: itemId,
+                    userNum: userNum,
+                    userName: userName
+                },
+                dataType: 'json',
+                async: true,
+                beforeSend: function () {
+                    loading('订单生成中...');
+                },
+                error: function () {
+                },
+                success: function (json) {
+
+                    loading(false);
+
+                    if (json.Success) {
+                        if (payType == "Alipay") {
+                            //支付宝 手机话费
+                            if (browser.versions.android) {
+
+                                android.payBill(json.billId, "Mobile","0");
+                            }
+
+                            if (browser.versions.ios) {
+                                window.location = "fake://payBill:/" + json.billId + ":/" + "Mobile" + "/0";
+                            }
+                        }
+                         else if (payType == "UnionPay")
+                         {
+                             if (browser.versions.android) {
+
+                                 android.payBill(json.billId, "Mobile","2");
+                             }
+
+                             if (browser.versions.ios) {
+                                 window.location = "fake://payBill:/" + json.billId + ":/" + "Mobile" + "/2";
+                             }
+                         }
+                         else if (payType == "WeixinPay") {
+                             if (browser.versions.android) {
+
+                                 android.payBill(json.billId, "Mobile", "3");
+                             }
+
+                             if (browser.versions.ios) {
+                                 window.location = "fake://payBill:/" + json.billId + ":/" + "Mobile" + "/3";
+                             }
+                         }
+                         else if (payType == "integral") {
+                             //个人积分 手机话费
+                             if (browser.versions.android) {
+                                 android.takepmpwd(advicePrice, json.billId, userNum, userName, payType);
+                             }
+                             if (browser.versions.ios) {
+                                 takepmpwd(advicePrice, json.billId, userNum, userName, payType);
+                             }
+                         }
+                         else {
+                             //个人帐户 手机话费
+                             if (browser.versions.android) {
+                                 android.takepmpwd(advicePrice, json.billId, userNum, userName, payType);
+
+                             }
+                             if (browser.versions.ios) {
+                                 takepmpwd(advicePrice, json.billId, userNum, userName, payType);
+
+                             }
+
+                        }
+
+                    } else {
+                        $("#submitFree").removeAttr("disabled").html('立即充值');
+                        Alert(json.Message);
+                    }
+                }
+            });
+        }
+
+        function accountPayBill(billId,pwd) {
+            $.ajax({
+                url: '/Web/Mobile/AccountPayBill',
+                type: 'POST',
+                data: {
+                    rechargeAmount: advicePrice,
+                    billId: billId,
+                    userNum: userNum,
+                    userName: userName,
+                    pwd:pwd
+                },
+                dataType: 'json',
+                async: true,
+                beforeSend: function () {
+                    loading('支付中...');
+                },
+                error: function () {
+                },
+                success: function (json) {
+                    loading(false);
+                    Alert(json.Message);
+                    if (json.Success) {
+                    }
+                }
+            });
+        }
+
+        function integralPayBill(billId,pwd) {
+            $.ajax({
+                url: '/Web/Mobile/integralPayBill',
+                type: 'POST',
+                data: {
+                    rechargeAmount: advicePrice,
+                    billId: billId,
+                    userNum: userNum,
+                    userName: userName,
+                    pwd:pwd
+                },
+                dataType: 'json',
+                async: true,
+                beforeSend: function () {
+                    loading('支付中...');
+                },
+                error: function () {
+                },
+                success: function (json) {
+                    loading(false);
+                    Alert(json.Message);
+                    if (json.Success) {
+                    }
+                }
+            });
+        }
+
+        function comparisonAccount(mobileNo, payType) {
+
+            $.ajax({
+                url: '/Web/User/ComparisonAccount',
+                type: 'POST',
+                data: {
+                    rechargeAmount: advicePrice,
+                    userNum: userNum,
+                    userName: userName
+                },
+                dataType: 'json',
+                async: true,
+                error: function () {
+                },
+                success: function (json) {
+                    if (json.Success) {
+                        createBill(mobileNo, payType);
+                    } else {
+                        Alert(json.Message);
+                    }
+                }
+            });
+        }
+
+        function payFree() {
+
+            var mobileNo = $("#mobileNo").val();
+            var payType = $("#payType input[type='radio']:checked").attr("id");
+            var rechargeAmount = $("#freeContainer input[type='radio']:checked").attr("id").replace("Alipay-", "");
+            //if (mobileNo == null || mobileNo=="") {
+            //    Alert("充值的手机号码不能为空");
+            //    return;
+            //}
+
+            //if (rechargeAmount == null||rechargeAmount =="") {
+            //    Alert("充值金额不能为空");
+            //    return;
+            //}
+
+            //if (itemId == null || itemId=="") {
+            //    Alert("话费充值商品编号不能为空");
+            //    return;
+            //}
+            //if (payType == "jmfww" || payType == "integral") {
+            //    $('#dlg').dialog('open').dialog('center').dialog('setTitle', "请填写支付密码");
+            //    debugger;
+            //    $(".ipt-real-nick").on("input", function () {
+            //        //console.log($(this).val());
+            //        var $input = $(".ipt-fake-box input");
+            //        if (!$(this).val()) {//无值光标顶置
+            //            $('.ipt-active-nick').css('left', $input.eq(0).offset().left - parseInt($('.ipt-box-nick').parent().css('padding-left')) + 'px');
+            //        }
+            //        if (/^[0-9]*$/g.test($(this).val())) {//有值只能是数字
+            //            //console.log($(this).val());
+            //            var pwd = $(this).val().trim();
+            //            for (var i = 0, len = pwd.length; i < len; i++) {
+            //                $input.eq(i).val(pwd[i]);
+            //                if ($input.eq(i).next().length) {//模拟光标，先将图片容器定位，控制left值而已
+            //                    $('.ipt-active-nick').css('left', $input.eq(i + 1).offset().left - parseInt($('.ipt-box-nick').parent().css('padding-left')) + 'px');
+            //                }
+            //            }
+            //            $input.each(function () {//将有值的当前input后的所有input清空
+            //                var index = $(this).index();
+            //                if (index >= len) {
+            //                    $(this).val("");
+            //                }
+            //            });
+            //            if (len == 6) {
+            //                //执行其他操作
+            //                $('#dlg').dialog('close');
+            //                createBill(mobileNo, payType,pwd);
+            //                console.log('输入完整，执行操作');
+            //            }
+            //        } else {//清除val中的非数字，返回纯number的value
+            //            var arr = $(this).val().match(/\d/g);
+            //            $(this).val($(this).val().slice(0, $(this).val().lastIndexOf(arr[arr.length - 1]) + 1));
+            //            //console.log($(this).val());
+            //        }
+            //    });
+            //} else
+            //{
+            //    var pwd = null;
+            //    debugger;
+            //    createBill(mobileNo, payType,pwd);
+            //}
+            //var billId = "286371953b894dedb98c3b0fb76614c7";
+            //var advicePrice = rechargeAmount;
+            //if (browser.versions.android) {
+            //    android.takepmpwd(advicePrice, billId, userNum, userName, payType);
+
+            //}
+            //if (browser.versions.ios) {
+            //    //window.location = "takepmpwd://advicePrice:/" + advicePrice + ":/" + billId + ":/" + userNum + ":/" + userName + ":/" + payType;
+            //    takepmpwd(advicePrice, billId, userNum, userName, payType);
+            //    //ios.takepmpwd(advicePrice, billId, userNum, userName, payType);
+
+            //}
+
+                   createBill(mobileNo,payType);
+
+
+            //if (payType == "jmfww") {
+            //    comparisonAccount(mobileNo, payType);
+            //}
+            //else {
+            //    createBill(mobileNo, payType);
+            //}
+        }
+
+        $(function () {
+
+            if (browser.versions.android) {
+                android.setTitle("手机充值");
+            }
+
+            if (browser.versions.ios) {
+                window.location = "fake://setTitle:/手机充值";
+            }
+
+            $("#mobileNo").on("keyup", function () {
+                getItemInfo();
+            });
+
+            $("#submitQuery").on("click", function () {
+                getPhoneInfo();
+            });
+
+            $("#submitFree").off("click").on("click", function () {
+                payFree();
+            });
+
+            $('#freeContainer input').iCheck({
+                checkboxClass: 'icheckbox_square-blue',
+                radioClass: 'iradio_square-blue',
+                increaseArea: '20%'
+            });
+
+            $('#freeContainer input').on('ifChecked', function (event) {
+                getItemInfo();
+            });
+
+            $("#freeContainer ul").css({
+                'padding': '0'
+            });
+
+            $("#freeContainer ul li").css({
+                'float': 'left',
+                'margin-right': '10px',
+                'margin-bottom': '10px',
+                'width': '28%',
+                'list-style': 'none'
+            });
+
+            $('#payType input').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+                increaseArea: '20%'
+            });
+
+            $('#mobileType').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+                increaseArea: '20%'
+            });
+
+        });
+        function forgetpmpwd() {
+            debugger
+            if (browser.versions.android) {
+                android.forgetpmpwd();
+            }
+            if (browser.versions.ios) {
+                window.location = "fake://forgetpmpwd:/";
+            }
+        }
+    </script>
+</body>
+</html>
