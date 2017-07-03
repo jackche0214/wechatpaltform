@@ -301,6 +301,9 @@ function hide(tag){
                 </td>
             </tr>
         </table>
+        <div id="itemdetails">
+
+        </div>
     </div>
 
     <script>
@@ -361,6 +364,16 @@ function hide(tag){
                 },
                 success: function (json) {
                     if (json.Success) {
+                        
+                        var dataset = $.parseJSON(json.Message);
+                        var cndata = dataset.cncm;
+                        alert(cndata["1"]["name"])
+                       
+                                    $("#itemdetails").append(
+                            "<div>" + cndata["1"]["name"] + "</div>" +
+                            "<div>" + cndata["1"]["state"] + "</div>" +
+                            "<div>" + cndata["1"]["type"] + "</div><hr/>");
+                          
                         $("#submitQuery").removeAttr("disabled");
                         $("#submitFree").removeAttr("disabled").html('立即充值');
 
@@ -382,10 +395,10 @@ function hide(tag){
                         $("#mobileAdress .mobileAdress").html("");
                         $("#mobilePrice").hide();
                         $("#mobilePrice .mobilePrice").html("");
-
                         Alert(json.Message);
                     }
-                }
+                },
+
             });
         }
 

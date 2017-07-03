@@ -1625,6 +1625,7 @@
     <Content Include="hibernate.cfg.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Mobile\Ihuyi_Huafei.html" />
     <Content Include="Mobile\Ihuyi_recharge_mobile.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
