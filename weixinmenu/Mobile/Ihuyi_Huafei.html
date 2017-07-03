@@ -225,12 +225,41 @@ function hide(tag){
                 success: function (result) {
                     var kk = JSON.stringify(result);
                     var jj = jQuery.parseJSON(result)
+                    var html = "";
                     $.each(jj, function (i, item) {
                         $.each(item, function (i, item) {
-                            alert(item["name"]);
+                            if (item["state"] == "1") {
+                                if (item["number"] >= 20)
+                                {
+                                    if (item["type"] == "cncm") {
+                                        html += '<div >';
+                                        html += '<h3 > 选项：' + item["name"] + '</h3>';
+                                        html += '<div><p>运营商：中国移动' + item["type"] + '</p></div>';
+                                        html += '<div><p>状态：' + item["state"] + '是可用的</p></div>';
+                                        html += '</div>';
+
+                                    } else if (item["type"] == "cncu") {
+                                        html += '<div >';
+                                        html += '<h3 > 选项：' + item["name"] + '</h3>';
+                                        html += '<div><p>运营商：中国联通' + item["type"] + '</p></div>';
+                                        html += '<div><p>状态：' + item["state"] + '是可用的</p></div>';
+                                        html += '</div>';
+                                    }
+                                    else if (item["type"] == "cnct") {
+                                        html += '<div >';
+                                        html += '<h3 > 选项：' + item["name"] + '</h3>';
+                                        html += '<div><p>运营商：中国电信' + item["type"] + '</p></div>';
+                                        html += '<div><p>状态：' + item["state"] + '是可用的</p></div>';
+                                        html += '</div>';
+                                    }
+                                }
+                              
+                               
+                            }
+                          
                         });
                     });
-
+                    $('#details').html(html);
                 }
             });
         };
