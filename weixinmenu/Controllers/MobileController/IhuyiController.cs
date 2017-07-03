@@ -35,8 +35,9 @@ namespace weixinmenu.Controllers.MobileController
                 {
                     throw new Exception(Ihuyi_ErrorCode.GetErrorMessage(code));
                 }
+                var kk =Json( result["packages"].ToString());
 
-                return Json(new { Success = true, Message = result["packages"].ToString() } );
+                return kk;
             }
             catch (Exception ex)
             {

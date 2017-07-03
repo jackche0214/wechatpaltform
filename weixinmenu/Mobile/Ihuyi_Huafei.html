@@ -222,16 +222,14 @@ function hide(tag){
                 data: "",
                 dataType: 'json',
                 async: true,
-                success: function (data) {
-
-                    alert(data.Message.cncm["1"]["name"])
-                    if (data.Success)
-                    {
-                        alert(22)
-                        var dataset = $.parseJSON(json.Message);
-                        var cndata = dataset.cncm;
-                        alert(cndata["1"]["name"])
-                    }
+                success: function (result) {
+                    var kk = JSON.stringify(result);
+                    var jj = jQuery.parseJSON(result)
+                    $.each(jj, function (i, item) {
+                        $.each(item, function (i, item) {
+                            alert(item["name"]);
+                        });
+                    });
 
                 }
             });
