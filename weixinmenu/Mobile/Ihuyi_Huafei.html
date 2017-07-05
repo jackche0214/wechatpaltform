@@ -8,192 +8,49 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <!-- 新 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.2/css/bootstrap.min.css" />
-
     <!-- 可选的Bootstrap主题文件（一般不用引入） -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.2/css/bootstrap-theme.min.css" />
-
-    <!-- icheck 核心 CSS 文件 -->
-    <link href="../Content/js/xScript/Bootstrap/icheck-1.x/skins/square/green.css" rel="stylesheet" />
     <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
     <script src="https://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
-
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="https://cdn.bootcss.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
-    <!-- icheck 核心 JavaScript 文件 -->
-    <script src="../Content/js/xScript/Bootstrap/icheck-1.x/icheck.min.js"></script>
-    <link href="../Content/js/xScript/Bootstrap/icheck-1.x/skins/square/blue.css" rel="stylesheet" />
-    <link href="../Content/appCommon.css" rel="stylesheet" />
-    <script src="../Content/appCommon.js"></script>
-
-    <link href="../Content/easyui/jquery-easyui-1.4.1/themes/gray/easyui.css" rel="stylesheet" />
-    <link href="../Content/easyui/jquery-easyui-1.4.1/themes/icon.css" rel="stylesheet" />
-
-    <script src="../Content/jquery.dbcMessage.js"></script>
-    <script src="../Content/easyui/jquery-easyui-1.4.1/jquery.easyui.min.js"></script>
     <style type="text/css">
         body {
             text-align: center;
-            padding-top: 20px;
+            margin-top:20px;
         }
-
-        #mobileNo {
-            font-size: 14px;
-            font-weight: 700;
-            color: #000;
+        hr {
+            margin-top: 10px;
+            margin-bottom: 10px;
         }
-
-        table.mobile tr td {
-            padding: 10px;
+        .itemtitle {
+        color:cornflowerblue;
         }
-
         .dataContainer {
             margin-top: 10px;
             margin: auto;
             width: 90%;
             text-align: left;
         }
-
-
-        #mobilePrice {
-            display: none;
-        }
-
-        .mobilePrice {
-            font-weight: 400;
-            color: #c40000;
-            font-size: 18px;
-        }
-
-        #mobileAdress {
-            display: none;
-        }
-
-        #mobileInfo {
-            display: none;
-        }
-    </style>
-    <style>
-        .ipt-box-nick {
-            width: 215px;
-            height: 35px !important;
-            float: left;
-            line-height: 40px !important;
-            position: relative !important;
-        }
-
-            .ipt-box-nick .ipt-real-nick {
-                position: absolute !important;
-                top: 0 !important;
-                left: 0 !important;
-                width: 100%;
-                height: 35px !important;
-                line-height: 35px !important;
-                opacity: 0 !important;
-                z-index: 3 !important;
+         input{
+                border: 1px solid #ccc;
+                padding: 7px 0px;
+                border-radius: 3px;
+                padding-left:5px;
+                -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+                box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+                -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+                -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+                transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s
             }
-
-            .ipt-box-nick .ipts-box-nick {
-                position: absolute !important;
-                top: 0 !important;
-                left: 0 !important;
-                z-index: 1 !important;
-                width: 100%;
-                height: 35px !important;
-                line-height: 35px !important;
-                overflow: hidden;
-            }
-
-                .ipt-box-nick .ipts-box-nick .ipt-fake-box {
-                    height: 35px !important;
-                    line-height: 35px !important;
-                    display: flex !important;
-                }
-
-                    .ipt-box-nick .ipts-box-nick .ipt-fake-box input {
-                        width: 35px !important;
-                        height: 34px !important;
-                        border: 1px solid #D7D7D7 !important;
-                        color: #0F0F0F !important;
-                        font-weight: bold !important;
-                        font-size: 18px !important;
-                        text-align: center !important;
-                        padding: 0px !important;
-                        float: left;
-                        border-radius: 4px;
-                    }
-
-            .ipt-box-nick .ipt-active-nick {
-                width: 35px !important;
-                height: 35px !important;
-                line-height: 35px !important;
-                text-align: center;
-                position: absolute !important;
-                top: 0;
-                left: 0;
-                z-index: 2;
-            }
-
-                .ipt-box-nick .ipt-active-nick img {
-                    vertical-align: middle;
-                }
-    </style>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
-
-        html, body {
-            height: 100%;
-            width: 100%;
-            font-size: 12px;
-        }
-
-        .white_content {
-            display: none;
-            position: absolute;
-            top: 5%;
-            left: 3%;
-            right: 3%;
-            height: 40%;
-            padding: 6px 6px;
-            border: 1px solid #D6E9F1;
-            border-radius: 8px;
-            background-color: white;
-            z-index: 1002;
-            overflow: auto;
-        }
-
-        .black_overlay {
-            display: none;
-            position: absolute;
-            top: 0%;
-            left: 0%;
-            width: 100%;
-            height: 100%;
-            background-color: #f5f5f5;
-            z-index: 1001;
-            -moz-opacity: 0.8;
-            opacity: .80;
-            filter: alpha(opacity=80);
-        }
-
-        .close {
-            float: right;
-            clear: both;
-            width: 1px;
-            text-align: left;
-            margin: 0 0 0 0;
-        }
-
-            .close a {
-                color: gainsboro;
-                text-decoration: none;
-                font-size: 16px;
-                font-weight: 3px;
+            input:focus{
+                    border-color: #66afe9;
+                    outline: 0;
+                    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+                    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)
             }
     </style>
+   
     <script>
 function show(tag){
  var light=document.getElementById(tag);
@@ -210,12 +67,60 @@ function hide(tag){
     </script>
 </head>
 <body>
-    <div id="details">
-        没有
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                 <input type="text" class="input-css3"  id="phonenumber" placeholder="请输入手机号码"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-md-12 ">
+                <hr />
+                <h5 class="itemtitle">中国移动</h5>
+                <hr />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <div id="cncmitems" class="radio-primary">
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <hr />
+            <div class="col-xs-12 col-md-12 ">
+                <h5 class="itemtitle">中国联通</h5>
+                <hr />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-md-12 ">
+                <div id="cncuitems">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <hr />
+            <div class="col-xs-12 col-md-12 ">
+                <h5 class="itemtitle">中国电信</h5>
+                <hr />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-md-12 ">
+                <div id="cnctitems">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <button class="btn btn-success"  id="submit_recharge">确定充值</button>
+            </div>
+        </div>
     </div>
     <script>
         function getdetails() {
-            debugger
             $.ajax({
                 url: '/MobileController/Ihuyi/GetItemInfo',
                 type: 'POST',
@@ -224,33 +129,28 @@ function hide(tag){
                 async: true,
                 success: function (result) {
                     var kk = JSON.stringify(result);
-                    var jj = jQuery.parseJSON(result)
+                    var jj = jQuery.parseJSON(result.Message)
                     var html = "";
+                    var html1 = "";
+                    var html2 = "";
                     $.each(jj, function (i, item) {
                         $.each(item, function (i, item) {
                             if (item["state"] == "1") {
                                 if (item["number"] >= 20)
                                 {
                                     if (item["type"] == "cncm") {
-                                        html += '<div >';
-                                        html += '<h3 > 选项：' + item["name"] + '</h3>';
-                                        html += '<div><p>运营商：中国移动' + item["type"] + '</p></div>';
-                                        html += '<div><p>状态：' + item["state"] + '是可用的</p></div>';
-                                        html += '</div>';
-
+                                        html += ' <input type="radio" name="number" value="';
+                                        html +=item["number"]+'" />';
+                                        html += '<label>'+ item["name"] +item["type"]+'</label>';
                                     } else if (item["type"] == "cncu") {
-                                        html += '<div >';
-                                        html += '<h3 > 选项：' + item["name"] + '</h3>';
-                                        html += '<div><p>运营商：中国联通' + item["type"] + '</p></div>';
-                                        html += '<div><p>状态：' + item["state"] + '是可用的</p></div>';
-                                        html += '</div>';
+                                        html1 += ' <input type="radio" name="number" value="';
+                                        html1 += item["number"] + '" />';
+                                        html1 += '<label>' + item["name"] +item["type"]+ '</label>';
                                     }
                                     else if (item["type"] == "cnct") {
-                                        html += '<div >';
-                                        html += '<h3 > 选项：' + item["name"] + '</h3>';
-                                        html += '<div><p>运营商：中国电信' + item["type"] + '</p></div>';
-                                        html += '<div><p>状态：' + item["state"] + '是可用的</p></div>';
-                                        html += '</div>';
+                                        html2 += ' <input type="radio" name="number" value="';
+                                        html2 += item["number"] + '" />';
+                                        html2 += '<label>' + item["name"] + item["type"] + '</label>';
                                     }
                                 }
                               
@@ -259,14 +159,69 @@ function hide(tag){
                           
                         });
                     });
-                    $('#details').html(html);
+                    $('#cncmitems').html(html);
+                    $('#cncuitems').html(html1);
+                    $('#cnctitems').html(html2);
                 }
             });
         };
-        $(function(){
-            getdetails();
-        });
 
+        function validatemobile(mobile) {
+            if (mobile.length == 0) {
+                return false;
+            }
+            if (mobile.length != 11) {
+                return false;
+            }
+
+            var myreg = /^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/;
+            if (!myreg.test(mobile)) {
+                return false;
+            }
+            return true;
+        };
+
+        $(document).ready(function () {
+          
+            getdetails();
+            $("#submit_recharge").on('click', function () {
+                var chargenumber = $("input[name='number']:checked").val();
+                var phonenumber = $("#phonenumber").val();
+                if (!validatemobile(phonenumber))
+                {
+                    alert("请核对手机号码");
+                    $("#phonenumber").val('');
+                    $("#phonenumber").focus();
+                    return
+                };
+                if (typeof(chargenumber) == "undefined") {
+                    alert("请点选要充值的金额");
+                    return
+                }
+                $.ajax({
+                    url: "/MobileController/Ihuyi/CreateBill",
+                    type: "POST",
+                    data: {
+                        mobile: phonenumber,
+                        package: chargenumber,
+                    },
+                    dataType: 'json',
+                    async: true,
+                    beforeSend: function () {
+                        
+                    },
+                    success: function (result) {
+                        if (result.Success) {
+                            window.location.href = "/Mobile/Ihuyi_Huafei.html";
+                        }
+                        else {
+                            alert(result.Message);
+                            window.location.href = "/Mobile/Ihuyi_Huafei.html";
+                        }
+                    },
+                });
+            });
+        });
     </script>
 </body>
 </html>

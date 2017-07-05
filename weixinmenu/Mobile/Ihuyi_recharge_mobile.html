@@ -45,7 +45,7 @@
         }
 
         table.mobile tr td {
-            padding: 10px;
+            padding: 5px;
         }
 
         .dataContainer {
@@ -81,6 +81,13 @@
             float: left;
             line-height: 40px !important;
             position: relative !important;
+        }
+        .itemli {
+                float: left;
+                margin-right: 10px;
+                margin-bottom: 10px;
+                width: 28%;
+                list-style: none;
         }
 
             .ipt-box-nick .ipt-real-nick {
@@ -222,7 +229,7 @@ function hide(tag){
                 <td>
                     <span class="mobileInfo"></span>
                 </td>
-            </tr>
+            <
             <tr id="mobileAdress">
                 <td>
                     <input type="radio" id="mobileType" checked="checked" />
@@ -231,42 +238,36 @@ function hide(tag){
             </tr>
             <tr>
                 <td>
-                    <div id="freeContainer">
-                        <ul>
-                            <li>
-                                <input type="radio" id="Alipay-20" name="alipay-square-radio" />
-                                <label for="Alipay-20">20元</label>
-                            </li>
-                            <li>
-                                <input type="radio" id="Alipay-30" name="alipay-square-radio" />
-                                <label for="Alipay-30">30元</label>
-                            </li>
-                            <li>
-                                <input type="radio" id="Alipay-50" name="alipay-square-radio" checked="checked" />
-                                <label for="Alipay-50">50元</label>
-                            </li>
-                        </ul>
-                        <ul>
-                            <li>
-                                <input type="radio" id="Alipay-100" name="alipay-square-radio" />
-                                <label for="Alipay-100">100元</label>
-                            </li>
-                            <li>
-                                <input type="radio" id="Alipay-200" name="alipay-square-radio" />
-                                <label for="Alipay-200">200元</label>
-                            </li>
-                            <li>
-                                <input type="radio" id="Alipay-300" name="alipay-square-radio" />
-                                <label for="Alipay-300">300元</label>
-                            </li>
-                            <li>
-                                <input type="radio" id="Alipay-500" name="alipay-square-radio" />
-                                <label for="Alipay-500">500元</label>
-                            </li>
-                        </ul>
-                    </div>
+                    <table id="items">
+                        <tr class="info"><td><p class="text-primary mobilePrice">中国移动</p><hr style="margin-top: 0px;margin-bottom: 0px;" /></td></tr>
+                        <tr>
+                            <td>
+                                <div  class="itemdetails">
+                                    <ul id="cncmitems">
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="info"><td><p class="text-primary mobilePrice">中国联通</p><hr style="margin-top: 0px;margin-bottom: 0px;" /></td></tr>
+                        <tr>
+                            <td>
+                                <div class="itemdetails">
+                                    <ul id="cncuitems"></ul>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="info"><td><p class="text-primary mobilePrice">中国电信</p><hr style="margin-top: 0px;margin-bottom: 0px;" /></td></tr>
+                        <tr>
+                            <td>
+                                <div class="itemdetails">
+                                    <ul id="cnctitems"></ul>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
                 </td>
             </tr>
+           
             <tr id="mobilePrice">
                 <td>
                     <label>销售价格：</label> <span class="mobilePrice">0.00</span>
@@ -301,9 +302,6 @@ function hide(tag){
                 </td>
             </tr>
         </table>
-        <div id="itemdetails">
-
-        </div>
     </div>
 
     <script>
@@ -338,11 +336,8 @@ function hide(tag){
         }
 
         function getItemInfo() {
-            debugger
             var mobileNo = $("#mobileNo").val();
             if (!validatemobile(mobileNo)) return;
-            var rechargeAmount = $("#freeContainer input[type='radio']:checked").attr("id").replace("Alipay-", "");
-
             $("#mobileInfo").hide().find(".mobileInfo").html("");
 
             $.ajax({
@@ -350,7 +345,6 @@ function hide(tag){
                 type: 'POST',
                 data: {
                     mobileNo: mobileNo,
-                    rechargeAmount: rechargeAmount,
                     userNum: userNum,
                     userName: userName
                 },
@@ -362,43 +356,53 @@ function hide(tag){
                 },
                 error: function () {
                 },
-                success: function (json) {
-                    if (json.Success) {
-                        
-                        var dataset = $.parseJSON(json.Message);
-                        var cndata = dataset.cncm;
-                        alert(cndata["1"]["name"])
-                       
-                                    $("#itemdetails").append(
-                            "<div>" + cndata["1"]["name"] + "</div>" +
-                            "<div>" + cndata["1"]["state"] + "</div>" +
-                            "<div>" + cndata["1"]["type"] + "</div><hr/>");
-                          
-                        $("#submitQuery").removeAttr("disabled");
-                        $("#submitFree").removeAttr("disabled").html('立即充值');
+                success: function (result) {
+                    if (result.Success) {
+                        //var kk = JSON.stringify(result.Message);
+                        var jj = jQuery.parseJSON(result.Message)
+                        var html = "";
+                        var html1 = "";
+                        var html2 = "";
+                        $.each(jj, function (i, item) {
+                            $.each(item, function (i, item) {
+                                if (item["state"] == "1") {
+                                    if (item["number"] >= 20 && item["number"]<=300) {
+                                        if (item["type"] == "cncm") {
+                                         
+                                            html += '<li  class="itemli">';
+                                            html += '<input type="radio" id="Alipay-20" name="alipay-square-radio" />';
+                                            html += '<label for="Alipay-20">' + item["name"] + '</label>';
+                                            html+= '</li>';
+                                        }
+                                        if (item["type"] == "cncu") {
 
-                        itemId = json.Message.ItemId;
-                        $("#mobileAdress").show();
-                        $("#mobileAdress .mobileAdress").html(json.Message.Province + json.Message.City + json.Message.Operator);
-                        $("#mobilePrice").show();
-                        $("#mobilePrice .mobilePrice").html("￥ " + json.Message.AdvicePrice);
-                        advicePrice = json.Message.AdvicePrice;
+                                            html1 += '<li  class="itemli">';
+                                            html1 += '<input type="radio" id="Alipay-20" name="alipay-square-radio" />';
+                                            html1 += '<label for="Alipay-20">' + item["name"] + '</label>';
+                                            html1 += '</li>';
+                                        }
+                                        if (item["type"] == "cnct") {
 
-                        if (json.Province != "全国") {
-                            province = json.Message.Province;
-                            city = json.Message.City;
-                            operator = json.Message.Operator;
-                        }
-                    } else {
-                        $("#submitFree").html('立即充值');
-                        $("#mobileAdress").hide();
-                        $("#mobileAdress .mobileAdress").html("");
-                        $("#mobilePrice").hide();
-                        $("#mobilePrice .mobilePrice").html("");
-                        Alert(json.Message);
+                                            html2 += '<li  class="itemli">';
+                                            html2 += '<input type="radio" id="Alipay-20" name="alipay-square-radio" />';
+                                            html2 += '<label for="Alipay-20">' + item["name"] +'</label>';
+                                            html2 += '</li>';
+                                        }
+                                    }
+
+
+                                }
+
+                            });
+                        });
+                        $('#cncmitems').html(html);
+                        $('#cncuitems').html(html1);
+                        $('#cnctitems').html(html2);
                     }
+                    else {
+                        Alert(result.Message);
+                    } 
                 },
-
             });
         }
 
@@ -717,23 +721,18 @@ function hide(tag){
                 radioClass: 'iradio_square-blue',
                 increaseArea: '20%'
             });
+            $('.itemli input').iCheck({
+                checkboxClass: 'icheckbox_square-blue',
+                radioClass: 'iradio_square-blue',
+                increaseArea: '20%'
+            });
 
             $('#freeContainer input').on('ifChecked', function (event) {
                 getItemInfo();
             });
-
-            $("#freeContainer ul").css({
-                'padding': '0'
+            $(".itemdetails ul").css({
+                'padding': '0',
             });
-
-            $("#freeContainer ul li").css({
-                'float': 'left',
-                'margin-right': '10px',
-                'margin-bottom': '10px',
-                'width': '28%',
-                'list-style': 'none'
-            });
-
             $('#payType input').iCheck({
                 checkboxClass: 'icheckbox_square-green',
                 radioClass: 'iradio_square-green',

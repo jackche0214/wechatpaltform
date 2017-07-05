@@ -35,13 +35,42 @@ namespace weixinmenu.Controllers.MobileController
                 {
                     throw new Exception(Ihuyi_ErrorCode.GetErrorMessage(code));
                 }
-                var kk =Json( result["packages"].ToString());
+                string message =result["packages"].ToString();
 
-                return kk;
+                return Json(new { Success = true, Message = message });
             }
             catch (Exception ex)
             {
                 return Json(new { Success = false, Message =ex.Message });
+            }
+        }
+
+        public ActionResult CreateBill(string mobile, string package)
+        {
+            string BasicUrl = ConfigurationManager.AppSettings["Ihuyi_Charge_Api"].ToString() + "?action=recharge&";
+            string username = ConfigurationManager.AppSettings["Ihuyi_Apiid"].ToString().ToLower();
+            string timestamp = DateTime.Now.ToString("yyyyMMddHHmmss");//时间戳(签名)
+            string tmpstamp = timestamp;
+            string apikey = ConfigurationManager.AppSettings["Ihuyi_Apikey"].ToString();
+            string orderid = timestamp+Guid.NewGuid().ToString().Replace("-","");
+            try
+            {
+                string tempsign = string.Format("apikey={0}&mobile={1}&orderid={2}&package={3}&timestamp={4}&username={5}", apikey,mobile,orderid, package,tmpstamp,username);
+                string sign = extsions.Md5Encrypt(tempsign, 32); //签名
+                string ApiUrl = string.Format("{0}username={1}&mobile={2}&orderid={3}&package={4}&timestamp={5}&sign={6}",BasicUrl,username, mobile,orderid,package, tmpstamp,sign);
+                string responsestring = HttpUtils.GetHttprequest(ApiUrl);
+                JObject result = JsonConvert.DeserializeObject(responsestring) as JObject;
+                int code = int.Parse(result["code"].ToString());
+                if (code != 1)
+                {
+                    throw new Exception(Ihuyi_ErrorCode.GetErrorMessage(code));
+                }
+
+                return Json(new { Success = true, Message ="hahha" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Success = false, Message = ex.Message });
             }
         }
     }
