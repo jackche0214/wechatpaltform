@@ -41,6 +41,8 @@ namespace weixinmenu.Controllers.MobileController
             }
             catch (Exception ex)
             {
+                string MethodName = "namespace weixinmenu.Controllers.MobileController--public class IhuyiController : Controller--GetItemInfo";
+                extsions.IoLog(MethodName, ex.Message);
                 return Json(new { Success = false, Message =ex.Message });
             }
         }
@@ -70,6 +72,8 @@ namespace weixinmenu.Controllers.MobileController
             }
             catch (Exception ex)
             {
+                string MethodName = "namespace weixinmenu.Controllers.MobileController--public class IhuyiController : Controller--CreateBill";
+                extsions.IoLog(MethodName,ex.Message);
                 return Json(new { Success = false, Message = ex.Message });
             }
         }

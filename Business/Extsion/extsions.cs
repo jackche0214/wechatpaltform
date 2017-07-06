@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -41,6 +42,12 @@ namespace Business.Extsion
 
             return str.Split(new char[] { split }, StringSplitOptions.RemoveEmptyEntries);
         }
+        /// <summary>
+        /// Md5B编码函数
+        /// </summary>
+        /// <param name="PassWord">要加密的字符串</param>
+        /// <param name="CodeLength">编码长度</param>
+        /// <returns></returns>
         public static string Md5Encrypt(string PassWord,int CodeLength )
         {
             if (!string.IsNullOrEmpty(PassWord))
@@ -92,7 +99,24 @@ namespace Business.Extsion
             }
             return string.Empty;
         }
-      
 
+        public static void IoLog( string MethodName , string Exception)
+        {
+            try
+            {
+                using (StreamWriter sw = File.AppendText("D:\\Iolog.txt"))
+                {
+                    string w = "\r\n";
+                     w += "===========异常时间：" + DateTime.Now.ToString("yyyyMMddHHmmss")+ " =========== ";
+                    w += "\r\n";
+                    w +="异常:"+ Exception + "--------" + "方法:" + MethodName + "--------" ;
+                    w += "\r\n";
+                    sw.Write(w);
+                }
+            }
+            catch {
+
+            }
+        }
     }
 }
